@@ -14,8 +14,8 @@ type Item = {
 
 const City: React.FC = () => {   
     const inputRef = useRef<HTMLInputElement>(null); //gets what is written in the actual input field
+    const debounceRef = useRef<number | undefined>(undefined); //stores the timeout when typing a city name 
     const [suggestions, setSuggestions] = useState<string[]>([]);
-    const debounceRef = useRef<number | undefined>(undefined);
     const dispatch : AppDispatch = useDispatch();
 
     // searches for city suggestions while user is typing 
@@ -32,8 +32,11 @@ const City: React.FC = () => {
         setSuggestions(cityNames);
       } catch (error) {
         console.error('Error fetching city suggestions:', error);
+        return [] as string[];
       }
     }, []);
+
+   
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value;
@@ -58,6 +61,12 @@ const City: React.FC = () => {
       dispatch(updateCity(newCityName));
     };
 
+    const handleInputFocus = () => {
+      if (inputRef.current) {
+        inputRef.current.value = '';
+        setSuggestions([]);
+      }
+    };
 
 //gets the name of the city when user clicks on the search button or ENTERS the input field
     const handleSubmit = (event: React.FormEvent) => {
@@ -65,10 +74,11 @@ const City: React.FC = () => {
         if (inputRef.current) {
             const newCityName = inputRef.current.value;
             dispatch(updateCity(newCityName));
-            //onCityNameChange(cityName);
             dispatch(updateLocations(newCityName));         
         }
     };
+    
+    const isSubmitDisabled = inputRef.current ? !inputRef.current.value.trim() : true;
 
     return (
         <SearchBox>
@@ -79,8 +89,9 @@ const City: React.FC = () => {
                     id="city"
                     ref={inputRef}
                     onChange={handleInputChange}
+                    onFocus={handleInputFocus}
                 />
-                <StyledButton type="submit">🔍</StyledButton>
+                <StyledButton type="submit" disabled={isSubmitDisabled}>🔍</StyledButton>
                 {suggestions.length > 0 && (
                   <SuggestionsList>
                     {suggestions.map((suggestion, index) => (
@@ -136,18 +147,18 @@ export default City;
     left: 13px;
   `;
   
-  const StyledButton = styled.button`
+  const StyledButton = styled.button<{ disabled: boolean }>`
     position: relative;
-    background: #F0C900;
+    background-color: ${(props) => (props.disabled ? '#ccc' : '#F0C900')};
     border: none;
     border-radius: 8px;
-    cursor: pointer;
+    cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
     margin: 3px;
     width: 26px;
     hight: 17px;
     left: 20px;
     &:hover {
-      background-color:rgb(179, 107, 0);
+       background-color: ${(props) => (props.disabled ? '#ccc' : '#b36b00')};
     }
   `;
 
