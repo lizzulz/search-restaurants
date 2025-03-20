@@ -2,10 +2,10 @@ import { useEffect} from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { LatLngExpression} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import '../styles/Map.css';
+// import '../styles/Map.css';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { RootState } from '../main.tsx'
+import { RootState } from '../main'
 
 
 
@@ -46,7 +46,7 @@ const Map: React.FC<MapProps> = ({ selectedRestaurant, onSelectedRestaurantChang
     return (
         <>
             <MapContainer 
-                style={{ height: '100vh', width: '100%' }}
+                style={{ height: '100vh', width: '100%',  overflow: 'hidden' }}
                 center={mapCenter} 
                 zoom={16} 
                 scrollWheelZoom={false}

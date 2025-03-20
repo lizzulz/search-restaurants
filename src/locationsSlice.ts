@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { LocationsType } from './types.ts';
-import { fetchLocations } from "./services/Locations.ts";
+import { LocationsType } from './types';
+import { fetchLocations } from "./services/Locations";
 
 
 // Define the initial state

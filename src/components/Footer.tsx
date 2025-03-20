@@ -5,10 +5,10 @@ type FooterProps = {
     // onSelectedRestaurantChange: (restaurant: string) => void;
 };
   
-const Footer: React.FC<FooterProps> = ({selectedRestaurant }) => { 
+const Footer: React.FC<FooterProps> = ({selectedRestaurant}) => { 
 
     const title = (selectedRestaurant) ? "Restaurant séléctionné" : "Aucun restaurant séléctionné";
-
+    
     return (
         <FooterBox>
             <StyledLabelTitle htmlFor="title">{title}</StyledLabelTitle><br/>
@@ -24,7 +24,7 @@ export default Footer;
 const FooterBox = styled.div`
     position: absolute;
     width: 100%;
-    bottom: 0;
+    bottom: 0px;
     background: rgb(255 255 255);   
     /* filter: drop-shadow(0 4px 4px #000000);*/
     border-radius: 8px;
@@ -61,7 +61,7 @@ const StyledButton = styled.button`
     width: 70px;
     hight: 25px;
     top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     &:hover {
       background-color:rgb(179, 107, 0);
     }

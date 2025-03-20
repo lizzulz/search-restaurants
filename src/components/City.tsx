@@ -4,7 +4,7 @@ import React, { useRef, useState, useCallback} from 'react';
 import { useDispatch } from 'react-redux';
 import { updateCity } from '../citySlice';
 import { updateLocations } from '../locationsSlice';
-import { AppDispatch } from '../main.tsx'
+import { AppDispatch } from '../main'
 
 
 type Item = {
@@ -93,7 +93,7 @@ const City: React.FC = () => {
                 />
                 <StyledButton type="submit" disabled={isSubmitDisabled}>🔍</StyledButton>
                 {suggestions.length > 0 && (
-                  <SuggestionsList>
+                  <SuggestionsList aria-label="suggestions">
                     {suggestions.map((suggestion, index) => (
                       <SuggestionsItem key={index} onClick={() => handleSuggestionClick(suggestion)}>
                         {suggestion}
@@ -173,6 +173,8 @@ export default City;
   background: rgb(255 255 255 / 60%);
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  role: 'list';
+  aria-label: 'suggestions';
 `;
 
 const SuggestionsItem = styled.li`

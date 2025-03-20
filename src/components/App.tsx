@@ -31,6 +31,8 @@ export default App;
 // Define a styled container
 const MainContainer = styled.div`
   position: relative;
-  width: 100%;
+  width:99%;
   height: 100vh;
+  margin: 5px;
+  overflow: hidden;
 `;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { LatLngExpression} from 'leaflet';
-import { LocationsType, LocationType } from '../types.ts'
+import { LocationsType, LocationType } from '../types'
 
 export const fetchLocations = async (cityName : string) : Promise<LocationsType> =>  { 
       
