@@ -1,10 +1,11 @@
 import { useEffect} from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import { LatLngExpression} from 'leaflet';
+import { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import styled from 'styled-components';
+import styled from 'styled-components'; 
 import { useSelector } from 'react-redux';
 import { RootState } from '../main'
+import L from 'leaflet';
 
 
 
@@ -27,13 +28,21 @@ const MapUpdater: React.FC<MapCenterProps> = ({ center }) => {
 
 
 
-
-
 const Map = ({ selectedRestaurant, onSelectedRestaurantChange}: MapProps) => {
 
     
     const markers = useSelector((state: RootState)=> state.locations.value.markers);
     const mapCenter = useSelector((state: RootState)=> state.locations.value.mapCenter);
+
+    //I need to pull the marker icon as it's not displayed by Vercel
+    const customIcon = new L.Icon({
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',  // CDN URL for the icon
+        iconSize: [25, 41], // Default icon size
+        iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
+        popupAnchor: [1, -34], // Offset the popup
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',  // Optionally use a shadow
+        shadowSize: [41, 41], // Shadow size
+      });
 
             
     const handleOnClick = (restaurant: string) => {
@@ -55,7 +64,10 @@ const Map = ({ selectedRestaurant, onSelectedRestaurantChange}: MapProps) => {
                 />
                 <MapUpdater center={mapCenter} />
                 {markers && markers.map((loc, index) => (
-                    <Marker key={index} position={[parseFloat(loc.lat), parseFloat(loc.lon)]}>
+                    <Marker key={index} 
+                        position={[parseFloat(loc.lat), parseFloat(loc.lon)]}
+                        icon={customIcon}
+                       >
                         <Popup>{loc.display_name}
                             <br/>
                             <StyledButton type="button" onClick={()=>handleOnClick(loc.display_name)}>Choisir</StyledButton>
