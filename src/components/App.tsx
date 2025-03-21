@@ -1,7 +1,7 @@
 import Map from './Map.tsx'
 import City from './City.tsx'
 import Footer from './Footer.tsx'
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import styled from 'styled-components';
 
