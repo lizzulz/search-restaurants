@@ -2,7 +2,6 @@ import { useEffect} from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { LatLngExpression} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-// import '../styles/Map.css';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { RootState } from '../main'
@@ -10,7 +9,6 @@ import { RootState } from '../main'
 
 
 type MapProps = {
-    // cityName: string;
     selectedRestaurant: string;
     onSelectedRestaurantChange: (restaurant: string) => void;
 };
@@ -31,7 +29,7 @@ const MapUpdater: React.FC<MapCenterProps> = ({ center }) => {
 
 
 
-const Map: React.FC<MapProps> = ({ selectedRestaurant, onSelectedRestaurantChange}) => {
+const Map = ({ selectedRestaurant, onSelectedRestaurantChange}: MapProps) => {
 
     
     const markers = useSelector((state: RootState)=> state.locations.value.markers);

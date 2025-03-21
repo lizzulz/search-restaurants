@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 type FooterProps = {
     selectedRestaurant: string;
-    // onSelectedRestaurantChange: (restaurant: string) => void;
 };
   
-const Footer: React.FC<FooterProps> = ({selectedRestaurant}) => { 
+const Footer = ({selectedRestaurant}: FooterProps) => { 
 
     const title = (selectedRestaurant) ? "Restaurant séléctionné" : "Aucun restaurant séléctionné";
     

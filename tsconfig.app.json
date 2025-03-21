@@ -9,6 +9,7 @@
     "module": "CommonJS",
     "target": "ESNext",
     "esModuleInterop": true,
+    "types": ["vitest/globals"],
 
     /* Bundler mode */
     // "moduleResolution": "bundler",

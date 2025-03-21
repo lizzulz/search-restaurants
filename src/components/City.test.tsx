@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
-import { vi } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import axios from 'axios';
 import City from './City'; 
 import '@testing-library/jest-dom';
@@ -8,7 +8,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import { updateCity } from "../citySlice";
 
 
-// Mock axios to return a predefined response for the city "Paris"
 vi.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 

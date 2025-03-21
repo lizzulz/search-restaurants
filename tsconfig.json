@@ -13,7 +13,8 @@
       "resolveJsonModule": true,
       "skipLibCheck": true,
       "isolatedModules": false,
-      "strict": true
+      "strict": true,
+      "types": ["vitest/globals"]
     }
     
 }

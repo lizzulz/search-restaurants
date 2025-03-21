@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
-const App: React.FC = () => {
+const App = () => {
 
   const [selectedRestaurant, setSelectedRestaurant] = useState(''); //I need the selected restaurant to be shared betweek Map and Footer
 

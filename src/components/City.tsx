@@ -12,7 +12,7 @@ type Item = {
 };
   
 
-const City: React.FC = () => {   
+const City = () => {   
     const inputRef = useRef<HTMLInputElement>(null); //gets what is written in the actual input field
     const debounceRef = useRef<number | undefined>(undefined); //stores the timeout when typing a city name 
     const [suggestions, setSuggestions] = useState<string[]>([]);
