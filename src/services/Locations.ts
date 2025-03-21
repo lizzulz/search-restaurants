@@ -8,7 +8,7 @@ export const fetchLocations = async (cityName : string) : Promise<LocationsType>
 
       try {
         const response = await axios.get(
-          `https://nominatim.openstreetmap.org/search?q=fast_food+in+${cityName}&format=json&limit=100`
+          `https://nominatim.openstreetmap.org/search?q=fast_food+in+${cityName}&format=json&limit=500`
         );
         const data = response.data;
         if (Array.isArray(data)) { //if the API response is good, then we call the callback function that is passed as a props
