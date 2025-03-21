@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
+import { vi } from "vitest";
 import axios from 'axios';
-import City from './City'; // Adjust the import according to your file structure
+import City from './City'; 
 import '@testing-library/jest-dom';
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
@@ -8,7 +9,7 @@ import { updateCity } from "../citySlice";
 
 
 // Mock axios to return a predefined response for the city "Paris"
-jest.mock('axios');
+vi.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 // Create a mock store
@@ -17,7 +18,7 @@ const mockStore = configureStore({
     
     preloadedState: {
       citySlice: {
-        cityName: "New York", // Mock state
+        cityName: "New York", 
       },
     },
   });
@@ -47,12 +48,12 @@ describe('City Component', () => {
     const input = screen.getByLabelText(/Chercher un restaurant/i);
     fireEvent.change(input, { target: { value: 'Paris' } });
 
-    // Wait for the suggestions to be fetched and displayed
+    // Wait for the suggestions to be found and displayed
     await waitFor(() => {
         const suggestionsList = screen.getByRole('list', { name: /suggestions/i });
         const suggestionsItems = within(suggestionsList).getAllByRole('listitem');
   
-        // Assert that one of the suggestions contains "Paris"
+        // Checks that one of the suggestions contains "Paris"
         const parisSuggestion = suggestionsItems.find((item: HTMLElement) =>
           item.textContent?.includes('Paris')
         );
